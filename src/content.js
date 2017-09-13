@@ -1,1 +1,9 @@
-module.exports = "It works from content.js.";
+export var movies = [
+    {title: 'Mean Girls'},
+    {title: 'Hackers'},
+    {title: 'The Grey'},
+    {title: 'Sunshine'},
+    {title: 'Ex Machina'},
+];
+
+// export { movies };
