@@ -21,6 +21,14 @@ class App extends React.Component {
     this.setState({ displayMovies: filteredMovies });
   }
 
+  onAdd(text) {
+    let newMovie = { title: text };
+    let newMovies = this.state.movies.slice();
+    newMovies.push(newMovie);
+    this.setState({ movies: newMovies });
+    this.setState({ displayMovies: newMovies });
+  }
+
   render() {
     let moiveLis = _.map(this.state.displayMovies, (moive, index) => {
       return <li key={index}>{moive.title}</li>;
@@ -30,6 +38,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Moive List</h1>
+        <Add clickFunc={(text) => this.onAdd(text)}/>
         <Search clickFunc={(text) => this.onSearch(text)}/>
         <ul>{moiveLis}</ul>
       </div>
@@ -48,6 +57,23 @@ class Search extends React.Component {
       <div>
         <input id="search-text" type="text" placeholder="Search..."/>
         <button onClick={() => this.props.clickFunc(document.getElementById('search-text').value)}>Go!</button>
+      </div>
+    );
+  }
+
+}
+
+class Add extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <input id="add-text" type="text" placeholder="Add movie title here"/>
+        <button onClick={() => this.props.clickFunc(document.getElementById('add-text').value)}>Add</button>
       </div>
     );
   }
